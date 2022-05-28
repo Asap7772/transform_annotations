@@ -9,30 +9,34 @@ all_images = sorted([os.path.join(os.path.abspath(images_path), x) for x in os.l
 num_aug = 5
 range_aug = 3
 
+if False:
+    all_images = all_images[:2]
+
 all_matrices = []
+
+pts_dict = {}
+for x in all_images:
+    print('loading image', x)
+    img1 = plt.imread(x)
+    # show image1
+    plt.figure(figsize=(10,10))
+    plt.imshow(img1)
+    pts = plt.ginput(4)
+    pts = np.array(pts,dtype=np.float32)
+    print('points', pts)
+    plt.close()
+    pts_dict[x] = pts
+
 
 for x in all_images:
     for y in all_images:
-        if x != y:
+        if x != y: # we don't want to compare the same image to itself but order matters
             print(f'shift from {x} to {y}')
             img1 = plt.imread(x)
             img2 = plt.imread(y)
             
-            # show image1
-            plt.figure(figsize=(10,10))
-            plt.imshow(img1)
-            pts1 = plt.ginput(4)
-            pts1 = np.array(pts1,dtype=np.float32)
-            print('first_points', pts1)
-            plt.close()
-            
-            
-            plt.figure(figsize=(10,10))
-            plt.imshow(img2)
-            pts2 = plt.ginput(4)
-            pts2 = np.array(pts2,dtype=np.float32)
-            print('second_points', pts2)
-            plt.close()
+            pts1 = pts_dict[x]
+            pts2 = pts_dict[y]
             
             matrices = [cv2.getPerspectiveTransform(pts1, pts2)]
             
