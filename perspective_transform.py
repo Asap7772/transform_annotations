@@ -11,8 +11,8 @@ range_aug = 3
 
 all_matrices = []
 
-for x in all_images[:1]:
-    for y in all_images[:2]:
+for x in all_images:
+    for y in all_images:
         if x < y:
             print(f'shift from {x} to {y}')
             img1 = plt.imread(x)
