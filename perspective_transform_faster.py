@@ -3,14 +3,14 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 
-images_path = './images/'
+images_path = '/home/anikaitsingh/transform_annotations/widowx_images'
 all_images = sorted([os.path.join(os.path.abspath(images_path), x) for x in os.listdir(images_path) if x.endswith('.png')])
 
 num_aug = 5
 range_aug = 3
 
-if False:
-    all_images = all_images[:2]
+# if True:
+    # all_images = all_images[:2]
 
 all_matrices = []
 
@@ -61,7 +61,7 @@ for x in all_images:
 # save all matrices
 out_path = './matrices/'
 os.makedirs(out_path, exist_ok=True)
-file_name = 'matrices_test.npy'
+file_name = 'matrices_widowx.npy'
 full_path = os.path.join(os.path.abspath(out_path), file_name)
 print(f'Saving matrices to {full_path}')
 np.save(full_path, all_matrices)
