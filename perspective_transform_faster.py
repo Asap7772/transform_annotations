@@ -3,7 +3,7 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 
-images_path = '/home/anikaitsingh/transform_annotations/widowx_images'
+images_path = './widowx_images'
 all_images = sorted([os.path.join(os.path.abspath(images_path), x) for x in os.listdir(images_path) if x.endswith('.png')])
 
 num_aug = 5
